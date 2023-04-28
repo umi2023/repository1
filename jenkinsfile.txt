@@ -1,15 +1,17 @@
-pipeline {
-	agent none
-  stages {
-  	stage('Maven Install') {
-    	agent {
-      	docker {
-        	image 'maven:3.6.3'
-        }
-      }
-      steps {
-      	sh 'mvn clean install'
-      }
+node {
+    stage('Clone repository') { // for display purposes
+        // Get some code from a GitHub repository
+        git branch: 'main', credentialsId: '17764f85-5dfe-4585-8504-f2e6f9c61aff', url: 'https://github.com/umi2023/repository1'
+        // Get the Maven tool.
+        // ** NOTE: This 'M3' Maven tool must be configured
+        // **       in the global configuration.
     }
-  }
+   stage('Build image') {
+        dockerImage = docker.build("umi2023/product-catalogue:latest")
+   }
+    stage('Push image') {
+                    withDockerRegistry([    credebtialsId: "dockerhub", url: "https://hub.docker.com/repository/docker/ikbelaloui/umi/general"]){
+                    dockerImage.push()
+                    }
+    }
 }
