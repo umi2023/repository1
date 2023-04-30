@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: productcatalogue
-        image: pfedevops/productcatalogue:latest
+        image: ikbelaloui/iaproductcatalogue:latest
         ports:
         - containerPort: 8020
         livenessProbe:
@@ -40,3 +40,8 @@ spec:
             port: 8025
           initialDelaySeconds: 30
           timeoutSeconds: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
