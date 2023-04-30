@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: stockmanager
-        image: pfedevops/stockmanager:latest
+        image: ikbelaloui/iastockmanager:latest
         ports:
         - containerPort: 8030
         livenessProbe:
@@ -40,3 +40,8 @@ spec:
             port: 8030
           initialDelaySeconds: 30
           timeoutSeconds: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
