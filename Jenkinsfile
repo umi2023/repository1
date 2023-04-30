@@ -112,12 +112,7 @@ pipeline {
         }
         
       }
-         stage ('deploy/service ') {
-          steps {
-          sh "docker-compose -f docker-compose.yaml up"
-
-      }
-    }
+      
     }
 }
 
