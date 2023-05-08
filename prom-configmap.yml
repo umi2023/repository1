@@ -1,0 +1,33 @@
+apiVersion : v1
+genre : ConfigMap
+métadonnées :
+  nom : prom-k8s
+données :
+  prometheus.yml : |
+    mondial:
+        scrape_interval: 30s
+        scrape_timeout : 30 s
+    scrape_configs :
+      - nom_travail : kubernetes-nodes-cadvisor
+        scrape_interval: 10s
+        scrape_timeout : 10 s
+        schéma : https # supprimer si vous souhaitez récupérer des métriques sur un port non sécurisé
+        tls_config :
+          ca_file : /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        bearer_token_file : /var/run/secrets/kubernetes.io/serviceaccount/token
+        kubernetes_sd_configs :
+          - rôle : nœud
+        relabel_configs :
+          - action : labelmap
+            regex : __meta_kubernetes_node_label_(.+)
+        metric_relabel_configs :
+          - action : remplacer
+            étiquettes_source : [identifiant]
+            regex : '^/machine\.slice/machine-rkt\\x2d([^\\]+)\\.+/([^/]+)\.service$'
+            étiquette_cible : rkt_container_name
+            remplacement : '${2}-${1}'
+          - action : remplacer
+            étiquettes_source : [identifiant]
+            regex : '^/system\.slice/(.+)\.service$'
+            étiquette_cible : nom_service_système
+            remplacement : '${1}'
