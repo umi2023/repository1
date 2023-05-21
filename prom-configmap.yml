@@ -1,7 +1,7 @@
 apiVersion : v1
 genre : ConfigMap
 métadonnées :
-  nom : prom-k8s
+  nom : prom-openshift
 données :
   prometheus.yml : |
     mondial:
