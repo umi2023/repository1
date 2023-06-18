@@ -23,6 +23,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productcatalogue
+  namespace: ikbel
 spec:
   selector:
     matchLabels:
