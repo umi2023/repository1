@@ -35,7 +35,10 @@ spec:
       - name: shopfront
         image: ikbelaloui/iashopfront:latest
         ports:
-        - containerPort: 8010
+        - name: http
+          containerPort: 8010
+        - name: nodeexporter
+          containerPort: 9100
         livenessProbe:
           httpGet:
             path: /health
