@@ -36,7 +36,10 @@ spec:
       - name: productcatalogue
         image: ikbelaloui/iaproductcatalogue:latest
         ports:
-        - containerPort: 8020
+        - name: http
+          containerPort: 8020
+        - name: nodeexporter
+          containerPort: 9100
         livenessProbe:
           httpGet:
             path: /healthcheck
