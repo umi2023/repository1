@@ -35,7 +35,10 @@ spec:
       - name: stockmanager
         image: ikbelaloui/iastockmanager:latest
         ports:
-        - containerPort: 8030
+        - name: http
+          containerPort: 8030
+        - name: nodeexporter
+          containerPort: 9100
         livenessProbe:
           httpGet:
             path: /actuator/health
