@@ -5,4 +5,3 @@ ADD script.sh script.sh
 RUN ["chmod", "+x", "/script.sh"]
 EXPOSE 8020 9100
 ENTRYPOINT ["/script.sh"]
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar", "server", "app-config.yml"]
