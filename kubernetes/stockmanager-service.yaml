@@ -13,7 +13,9 @@ spec:
   - protocol: TCP
     port: 8030
     name: http
-
+  - protocol: TCP
+    port: 9100
+    name: nodeexporter
 ---
 apiVersion: apps/v1
 kind: Deployment
