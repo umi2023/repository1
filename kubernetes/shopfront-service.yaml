@@ -47,6 +47,8 @@ spec:
             port: 8010
           initialDelaySeconds: 30
           timeoutSeconds: 1
+      imagePullSecrets:
+        - name: regcredikbel
   strategy:
     type: RollingUpdate
     rollingUpdate:
